@@ -1,0 +1,39 @@
+<html lang="en">
+    <head>
+        <title>Śledzik</title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+
+        <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+                integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA="
+                crossorigin="anonymous">
+        </script>
+
+        <script type="module">
+            import { v4 as uuidv4 } from "https://jspm.dev/uuid"
+
+            $(function() {
+                let uuid_key = "tech.soiree.sledzik.users.current.uuid"
+                let stored_uuid =window.localStorage.getItem(uuid_key)
+                let uuid;
+                if (stored_uuid === null) {
+                    uuid = uuidv4()
+                    window.localStorage.setItem(uuid_key, uuid)
+                } else {
+                    uuid = stored_uuid
+                }
+                console.debug(`UUID is ${uuid}.`)
+
+                let $uuid = $("#uuid")
+                $uuid.text(uuid)
+            });
+        </script>
+    </head>
+    <body>
+        It works!<br/>
+        Your UUID: <span id="uuid">None</span>
+    </body>
+</html>
